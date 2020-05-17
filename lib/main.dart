@@ -1,62 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_app/widgets/chart/chart.dart';
+import 'package:flutter_app/widgets/curiosities.dart';
+import 'package:flutter_app/widgets/map.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(VideoApp());
 
-class MyApp extends StatefulWidget {
+class VideoApp extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _VideoAppState createState() => _VideoAppState();
 }
 
-class _MyAppState extends State<MyApp> {
-  GoogleMapController mapController;
+class _VideoAppState extends State<VideoApp> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  final List<Widget> _widgetOptions = <Widget>[
+    Curiosities(),
+    NewGraph(),
+    NewMap(),
+    // Text('Ziemia'),
+  ];
 
-  final LatLng _center = const LatLng(45.521563, -122.677433);
-
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-  
-  List<Circle> allCircle = [];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    allCircle.add(Circle(
-      circleId: CircleId('myCircle'),
-      center: LatLng(45.521563, -122.677433),
-      strokeColor:  Color.fromRGBO(255, 0, 0, 0.5),
-      fillColor: Color.fromRGBO(255, 0, 0, 0.5),
-      radius: 15000,
-    ));
-    allCircle.add(Circle(
-      circleId: CircleId('myCircle'),
-      center: LatLng(46.522553, -122.677433),
-      strokeColor:  Color.fromRGBO(255, 0, 0, 0.5),
-      fillColor: Color.fromRGBO(255, 0, 0, 0.5),
-      radius: 6000,
-    ));
+  void _onTap(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
+      title: 'Earth',
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Maps'),
-          backgroundColor: Colors.green[700],
-        ),
-        body: GoogleMap(
-          circles: Set.from(allCircle),
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 11.0,
+      body: _widgetOptions.elementAt(_selectedIndex),
+     bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chrome_reader_mode),
+            title: Text("Ciekawostki"),
           ),
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.equalizer),
+            title: Text("Wykres"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.location_on),
+            title: Text("Mapa"),
+          ),
+          /*
+          BottomNavigationBarItem(
+            icon: Icon(Icons.blur_circular),
+            title: Text("Ziemia"),
+          ),
+          */
+        ],
+        onTap: _onTap,
+        currentIndex: _selectedIndex,
       ),
+    ),
     );
   }
 }

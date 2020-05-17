@@ -14,16 +14,23 @@ description: MyEarth
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: 
 
 dependencies:
-  google_maps_flutter: ^0.5.21+7
   flutter:
     sdk: flutter
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  cupertino_icons: 
+
+  google_maps_flutter: 
+
+  charts_flutter: 
+  json_annotation: 
+  http: 
+
+  provider: 
+  location: 
 
 dev_dependencies:
   flutter_test:
