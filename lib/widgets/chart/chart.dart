@@ -90,12 +90,12 @@ class _NewGraph extends State<NewGraph> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Wykres"),
+        title: const Text("Wykres"),
         centerTitle: true,
       ),
       body: Center(
           child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(children: <Widget>[
           /*
           FutureBuilder<PostsList>(
@@ -129,7 +129,7 @@ class _NewGraph extends State<NewGraph> {
           ),
           */
           _currencies.isEmpty
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : DropdownButton<Stations>(
                   items: _dropdownitems,
                   onChanged: onChangeDropdownItem,
@@ -186,19 +186,20 @@ class _NewGraph extends State<NewGraph> {
               */
             },
           ),*/
-          Text(" "),
+          const Text(" "),
           Text(
             "Zanieczyszczenie powietrza względem normy",
             style: Theme.of(context).textTheme.body2,
           ),
           HorizontalBarChart(data),
-          Text("Nazwy substancji"),
-          Text('CO - Tlenek węgla (norma: 10000 µg/m\u00B3)'),
-          Text('O\u2083 - Ozon troposferyczny(norma: 120 µg/m\u00B3)'),
-          Text('SO\u2082 - Dwutlenek siarki (norma: 350 µg/m\u00B3)'),
-          Text('NO\u2082 - Dwutlenek azotu (norma: 200 µg/m\u00B3)'),
-          Text('PM\u2081\u2080 - Pył zawieszony PM10 (norma: 50 µg/m\u00B3)'),
-          Text(
+          const Text("Nazwy substancji"),
+          const Text('CO - Tlenek węgla (norma: 10000 µg/m\u00B3)'),
+          const Text('O\u2083 - Ozon troposferyczny(norma: 120 µg/m\u00B3)'),
+          const Text('SO\u2082 - Dwutlenek siarki (norma: 350 µg/m\u00B3)'),
+          const Text('NO\u2082 - Dwutlenek azotu (norma: 200 µg/m\u00B3)'),
+          const Text(
+              'PM\u2081\u2080 - Pył zawieszony PM10 (norma: 50 µg/m\u00B3)'),
+          const Text(
               'PM\u2082\u0656\u2085 - Pył zawieszony PM2,5 (norma: 25 µg/m\u00B3)'),
         ]),
       )),
